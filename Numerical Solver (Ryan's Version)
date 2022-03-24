@@ -11,7 +11,6 @@ dt= .0001
 
 while t<10:
     x+=velocity*dt
-    a=accerleration(x, velocity)
-    velocity+=a*dt
+    velocity+=accerleration(x, velocity)*dt
     print("%.8f"%x)
     t+=dt
