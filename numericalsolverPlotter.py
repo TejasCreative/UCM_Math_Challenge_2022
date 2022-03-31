@@ -6,7 +6,7 @@ def acc(x, velocity,drag, springconstant):
 def solve(x,v,b,k):
     t=0
     points = []
-    while t<1000:
+    while t<10:
         x += v*dt
         v += acc(x,v,b,k) * dt
         points.append(x)
@@ -22,12 +22,12 @@ def underdamped(t,drag,k):
     r=np.sqrt(np.abs(drag**2-4*k))
     return 2/r * np.exp((-drag/2)*t)*np.sin(r/2*t)
 
-dt = .5930703308
-time = list(np.linspace(0,1000,1687, endpoint=True))
+dt = 1/8
+time = list(np.linspace(0,10,80, endpoint=True))
 
 plt.plot(time,solve(0,1,1,8), color='g', label='underdamp') 
-#plt.plot(time,solve(1,-1,1,1/8), color='r', label='overdamp')
-#plt.plot(time, solve(1,-1,1,.25), color='b', label='criticalDamp')
+plt.plot(time,solve(0,1,1,1/8), color='r', label='overdamp')
+plt.plot(time, solve(0,1,1,.25), color='b', label='criticalDamp')
 
 # overdampeddata = [overdamped(t,1,1/8) for t in time]
 # criticaldampdata = [criticaldamp(t,1,.25) for t in time]
